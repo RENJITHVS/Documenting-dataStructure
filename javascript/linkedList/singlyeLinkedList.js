@@ -107,7 +107,6 @@ class singlyLinkedList{
         this.length--;
         return current;
         
-        // 2-3-6-2-5
     }
     reverse(){
         var node = this.head;
@@ -123,6 +122,63 @@ class singlyLinkedList{
         }
         return this;
     }
+    
+    
+       largestVal(){
+        let current = this.head;
+        let foundMax = 0
+
+        while(current){
+          console.log(current)
+            if(foundMax < current.val) {
+                foundMax = current.val;
+            }
+            current = current.next
+        }
+        return foundMax
+    }
+    
+    
+    
+     sort(){
+    if (this.head === null || this.head.next === null) {
+      return;
+    }
+    let current = this.head;
+    let index = null;
+    while (current !== null) {
+      index = current.next;
+      while (index !== null) {
+        if (current.val < index.val) {
+          let temp = current.val;
+          current.val = index.val;
+          index.val = temp;
+        }
+        index = index.next;
+      }
+      current = current.next;
+    }
+  }
+    
+    findUnique() {
+    const map = new Map();
+    let current = this.head;
+    while (current !== null) {
+      if (map.has(current.val)) {
+        map.set(current.val, false);
+      } else {
+        map.set(current.val, true);
+      }
+      current = current.next;
+    }
+    const unique = [];
+    map.forEach((value, key) => {
+      if (value) {
+        unique.push(key);
+      }
+    });
+    return unique;
+  }
 }
 
 var list = new singlyLinkedList();
